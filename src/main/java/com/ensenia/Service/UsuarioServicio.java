@@ -3,7 +3,6 @@ package com.ensenia.Service;
 
 import com.ensenia.Entity.Usuario;
 import com.ensenia.Error.ErrorServicio;
-import com.ensenia.Repository.UsuarioRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +20,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import org.springframework.web.context.request.ServletRequestAttributes;
+import com.ensenia.Repository.UsuarioRepositorio;
 
 @Service
 public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioRepositorio usuarioRepository;
     
     ///////////// Metodo Registrar Usuario
     
