@@ -149,5 +149,14 @@ public class UsuarioServicio implements UserDetailsService{
         }
     }
     
+    public void usuarioVeCurso(String id_usuario, String id_curso){
+    
+        System.out.println("");
+        
+    }
+    
+    
+    
+    
     
 }
