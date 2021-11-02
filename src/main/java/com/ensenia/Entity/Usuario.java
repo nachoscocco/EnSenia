@@ -1,9 +1,11 @@
 
 package com.ensenia.Entity;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -19,6 +21,11 @@ public class Usuario {
     private String mail;
     private String clave;
 
+    private Boolean alta;
+    
+    @ManyToMany
+    private List<Curso> curso;
+    
     /////////////////////////////////////////////////////////////////////
 
     //////////////// Constructores
@@ -26,17 +33,36 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String apellido, String mail, String clave) {
+    public Usuario(String id, String nombre, String apellido, String mail, String clave, Boolean alta, List<Curso> curso) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
         this.clave = clave;
+        this.alta = alta;
+        this.curso = curso;
     }
 
+    
     //////////////////////////////////////////////////////////////////////
 
     //////////////// Get y Set
+    
+    public List<Curso> getCurso() {
+        return curso;
+    }
+
+    public void setCurso(List<Curso> curso) {
+        this.curso = curso;
+    }
+    
+    public Boolean getAlta() {
+        return alta;
+    }
+
+    public void setAlta(Boolean alta) {
+        this.alta = alta;
+    }
     
     public String getId() {
         return id;
