@@ -20,33 +20,55 @@ public class Usuario {
     private String apellido;
     private String mail;
     private String clave;
-
     private Boolean alta;
+
+
     
     @ManyToMany
     private List<Curso> curso;
-    
-    /////////////////////////////////////////////////////////////////////
 
-    //////////////// Constructores
-
-    public Usuario() {
-    }
-
-    public Usuario(String id, String nombre, String apellido, String mail, String clave, Boolean alta, List<Curso> curso) {
+    public Usuario(String id, String nombre, String apellido, String mail, String clave, Boolean alta, List<Curso> cursos) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
         this.clave = clave;
         this.alta = alta;
-        this.curso = curso;
+        this.cursos = cursos;
     }
+    
+   @ManyToMany
+    private List<Curso> cursos;
 
+    /////////////////////////////////////////////////////////////////////
+
+    //////////////// Constructores
+
+    public Usuario() {
+    }
     
     //////////////////////////////////////////////////////////////////////
 
     //////////////// Get y Set
+
+    public Boolean getAlta() {
+        return alta;
+    }
+
+    public void setAlta(Boolean alta) {
+        this.alta = alta;
+    }
+
+    public List<Curso> getCursos() {
+        return cursos;
+    }
+
+    public void setCursos(List<Curso> cursos) {
+        this.cursos = cursos;
+    }
+    
+    
+    
     
     public List<Curso> getCurso() {
         return curso;
@@ -54,14 +76,6 @@ public class Usuario {
 
     public void setCurso(List<Curso> curso) {
         this.curso = curso;
-    }
-    
-    public Boolean getAlta() {
-        return alta;
-    }
-
-    public void setAlta(Boolean alta) {
-        this.alta = alta;
     }
     
     public String getId() {
