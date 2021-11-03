@@ -134,8 +134,7 @@ public class UsuarioServicio implements UserDetailsService{
         }
     }   
  
-    ///////////////// Met
-    
+    @Transactional
     public void eliminar(String id) throws ErrorServicio {
         
         Optional<Usuario> respuesta = usuarioRepository.findById(id);

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 
@@ -27,6 +28,7 @@ public class CursoServicio {
     @Autowired
     private CursoRepositorio cursoRepositorio;
     
+    @Transactional
     public void alta(String titulo,Integer duracion, String descripcion,Grupo grupo) throws ErrorServicio{
     
         validar(titulo, duracion, descripcion, grupo);
@@ -40,6 +42,7 @@ public class CursoServicio {
     
     }
     
+    @Transactional
     public void modificar(String id,String titulo,Integer duracion, String descripcion,Grupo grupo) throws ErrorServicio{
     
         validar(titulo, duracion, descripcion, grupo);
@@ -60,6 +63,7 @@ public class CursoServicio {
         }
     }
     
+    @Transactional
     public void baja(String id) throws ErrorServicio{
 
         Optional<Curso> respuesta = cursoRepositorio.findById(id);
@@ -76,7 +80,7 @@ public class CursoServicio {
         }
     }
     
-    
+    @Transactional
     public void validar(String titulo,Integer duracion, String descripcion,Grupo grupo) throws ErrorServicio{
          if (titulo == null || titulo.isEmpty()) {
             throw new ErrorServicio("El titulo no puede ser nulo");
@@ -94,16 +98,14 @@ public class CursoServicio {
         
     }
     
+    @Transactional
     public void agregarSeccion(String id_curso, Seccion seccion) throws ErrorServicio{
        Optional<Curso> respuesta= cursoRepositorio.findById(id_curso);
        
        if(respuesta.isPresent()){
         Curso curso = respuesta.get();
         try{   
-          
-           List<Seccion>listaSeccion= curso.getSecciones();
-           listaSeccion.add(seccion);
-           curso.setSecciones(listaSeccion);
+            curso.getSecciones().add(seccion);
            cursoRepositorio.save(curso);
         }
         catch(Exception e){
@@ -117,6 +119,7 @@ public class CursoServicio {
     
     }
     
+    @Transactional(readOnly=true)
     public List<Seccion> obtenerSecciones(String id_curso)throws ErrorServicio {
     
     Optional<Curso> respuesta= cursoRepositorio.findById(id_curso);
