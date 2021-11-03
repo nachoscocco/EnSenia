@@ -1,8 +1,10 @@
 
- 
 package com.ensenia.Configuration;
 
 
+
+import com.ensenia.Service.UsuarioServicio;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -21,15 +23,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Security extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    public UsuarioServicio usuarioServicio;
+    @Autowired
+    public UsuarioServicio usuarioServicio;
     
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth)throws Exception{
-//        auth
-//                .userDetailsService(usuarioServicio)
-//                .passwordEncoder( new BCryptPasswordEncoder());
-//    }
+   @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth)throws Exception{
+        auth
+                .userDetailsService(usuarioServicio)
+                .passwordEncoder( new BCryptPasswordEncoder());
+    }
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -50,3 +52,4 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     }
 }
+
