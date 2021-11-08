@@ -1,0 +1,32 @@
+/*------------------------------- GLOBALS ------------------------------------*/
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Bebas Neue';
+    font-family: 'Kodchasan', sans-serif;
+    min-height: 100%;
+    color: black;
+    justify-content: center;
+}
+
+
+.title-label{
+    font-size: 30px !important; 
+    font-weight: bold !important;
+
+
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+
