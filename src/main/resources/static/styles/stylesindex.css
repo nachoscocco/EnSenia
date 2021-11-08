@@ -1,0 +1,36 @@
+
+.mySlides {
+    max-width: 100%;
+    height: auto;
+}
+
+.courses {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 9px;
+
+}
+
+.coursesCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: grey;
+    padding: 2px;
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+}
+  
+.goTo-btn {
+    cursor: pointer;
+    position: absolute;
+    bottom: 19px;
+    left: 11px;
+    color: black;
+    width: fit-content;
+    padding: 8px 10px;
+    background: grey;
+}
+
