@@ -2,86 +2,92 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="../static/styles/styles.css">
-  <title>En-seña</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/styles/stylesmain.css">
+  <title>En-seña</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kodchasan:wght@400;500&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-  <header>
-    <div class="row d-flex justify-content-between mx-2">
-      <div class="col">
-        <a class="navbar-brand" href="#">
-          <img src="../static/image/logo.jpeg" class="rounded-circle" width="60px" height="50px" alt="logo">
-        </a>
-      </div>
-      <div class="col-4 d-flex align-items-center">
-        <ul class="nav">
-          <li class="nav-item text-white"><a class="nav-link active rounded-pill mx-2" style="color:black" aria-current="page" href="#"><b>Inicio</b></a></li>         
-          <li class="nav-item"><span> <a class="nav-link rounded-pill mx-2" style="color:black" href="#"><b>Contenido</b></a></span></li> 
-          <li class="nav-item"><a class="nav-link rounded-pill mx-2" style="color:black" href="#"><b>Contactanos</b></a></li>         
-          </ul>
-        </div>
-      </div>
-  </header>
-  <div class="row d-flex justify-content-between mt-5 col-11">
-    <div class="card bg-dark text-black border-0">
-     <img src="../static/image/encabezado.jpeg" class="card-img" width="60px" height="700" alt="encabezado">
-      <div class="card-img-overlay">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quibusdam nesciunt facilis aspernatur velit quia voluptatibus ab aperiam! Quae modi ratione nobis ullam officiis temporibus iste, recusandae praesentium quia. Molestias.</p>
-        <p class="card-text">Last updated 3 mins ago</p>
-      </div>
+
+  <!-------------------------------------------BARRA NAVEGACION----------------------------------------------->
+
+  <div class="header">
+    <img src="../static/image/Logo.png" class="logo" alt="logo En-seña">
+    <!--agregue alt-->
+    <div class="header-right">
+      <button class="ingresar" onclick="botonIngreso()">Ingresar</button>
+      <button onclick="botonRegistro()">Registrarse</button>
     </div>
-    <!-- <div class="mt-3 col-4">
-        <h1>Titulo</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex possimus sint voluptates ducimus. Rem ducimus quisquam mollitia, accusantium rerum quod voluptatum? Inventore et consequuntur deleniti assumenda voluptas corporis aliquid praesentium.</p>
-      <img src="encabezado.jpeg" class= "img-fluid" alt=""width="500px"height="400px">
-      </div> -->
-    <form class="col-3 login">
-      <div class="mb-2">
-        <label for="exampleInputEmail1" class="form-label">Email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text"></div>
-      </div>
-
-      <div class="mb-2">
-        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
-      </div>
-      <div>
-        <button type="submit" class="btn btn-dark" style>Ingresar</button>
-      </div>
-      <br>
-      <div class="mb-2 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Recordarme</label>
-      </div>
-      <br>
-      <div>
-        <button type="submit" class="btn btn-outline-dark">Olvidaste la contraseña?</button>
-      </div>
-      <br>
-      <div>
-        <button type="submit" class="btn btn-dark" style> Crear cuenta</button>
-      </div>
-    </form>
   </div>
 
+  <!------------------------------------------- SECCION INICIAL----------------------------------------------->
 
+  <div class="container">
+    <!--Formulario Ingreso/Registro-->
+    <div id="myDiv" style="display: none;">
+      <!--Sacar style / ver funcion en js-->
+      <form class="container-form">
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
 
+        <label for="psw"><b>Contraseña</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
 
+        <input type="checkbox" id="exampleCheck1">
+        <label for="exampleCheck1">Recordarme</label>
 
+        <button type="submit" class="btn">Login</button>
+      </form>
+    </div>
 
+    <div id="myDiv2" style="display: none;">
+      <!--Sacar style / ver funcion en js-->
+      <form class="container-form">
+        <label for="name"><b>Nombre</b></label>
+        <input type="text" placeholder="Nombre" name="name" required>
 
-  <div class="hola-2 footer-copyright text-center py-3 fixed-bottom">©️ 2021 Copyright:
-    <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        <label for="lastname"><b>Apellido</b></label>
+        <input type="text" placeholder="Apellido" name="srn" required>
+
+        <label for="mail"> <b>Email</b></label>
+        <input type="text" required>
+
+        <label for="psw"> <b>Contraseña</b></label>
+        <input type="password" required>
+
+        <button type="submit" class="btn">Crear Cuenta</button>
+      </form>
+    </div>
+
+    <img src="../static/image/3715.jpg" class="bg-img" alt="banner"><!--Cambio nuevo. Saque style/agregue clase-->
+    <div class="content">
+      <h1>APRENDIENDO A INCLUIR</h1>
+      <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis
+        neglegentur. Cu mentitum maiestatis persequeris pro, pri ponderum tractatos ei.lore Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis libero blanditiis, quasi ipsa voluptatum nostrum tempora quam autem assumenda obcaecati possimus vitae fuga velit totam similique voluptate ipsam nam recusandae.
+      </p><!-- Ver texto-->
+    </div>
   </div>
+
+  <!------------------------------------------- FOOTER----------------------------------------------->
+
+  <footer>
+    <div>©️ 2021 Copyright:
+      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a> <!--Estilado en CSS-->
+    </div>
+  </footer>
+
+  <script src="../templates/main.js"></script>
 </body>
+
 
 </html>
