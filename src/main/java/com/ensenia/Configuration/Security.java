@@ -23,10 +23,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class Security extends WebSecurityConfigurerAdapter {
 
+
     @Autowired
     public UsuarioServicio usuarioServicio;
     
-   @Autowired
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)throws Exception{
         auth
                 .userDetailsService(usuarioServicio)

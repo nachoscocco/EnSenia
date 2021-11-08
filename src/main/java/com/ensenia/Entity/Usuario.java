@@ -22,6 +22,11 @@ public class Usuario {
     private String clave;
     private Boolean alta;
 
+
+    
+    @ManyToMany
+    private List<Curso> curso;
+
     public Usuario(String id, String nombre, String apellido, String mail, String clave, Boolean alta, List<Curso> cursos) {
         this.id = id;
         this.nombre = nombre;
@@ -34,15 +39,14 @@ public class Usuario {
     
    @ManyToMany
     private List<Curso> cursos;
+
     /////////////////////////////////////////////////////////////////////
 
     //////////////// Constructores
 
     public Usuario() {
     }
-
-  
-
+    
     //////////////////////////////////////////////////////////////////////
 
     //////////////// Get y Set
@@ -65,6 +69,14 @@ public class Usuario {
     
     
     
+    
+    public List<Curso> getCurso() {
+        return curso;
+    }
+
+    public void setCurso(List<Curso> curso) {
+        this.curso = curso;
+    }
     
     public String getId() {
         return id;

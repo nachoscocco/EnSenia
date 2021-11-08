@@ -3,6 +3,7 @@ package com.ensenia.Service;
 
 import com.ensenia.Entity.Usuario;
 import com.ensenia.Error.ErrorServicio;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,8 @@ import com.ensenia.Repository.UsuarioRepositorio;
 public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
-    private UsuarioRepositorio usuarioRepository;
+    private UsuarioRepositorio usuarioRepositorio;
+
     
     ///////////// Metodo Registrar Usuario
     
@@ -45,7 +47,7 @@ public class UsuarioServicio implements UserDetailsService{
         
         usuario.setClave(clave1);
         
-        usuarioRepository.save(usuario);
+        usuarioRepositorio.save(usuario);
     }
     
     //////////// Metodo Modificar Usuario
@@ -55,7 +57,7 @@ public class UsuarioServicio implements UserDetailsService{
     
         validar(nombre, apellido, mail, clave1, clave2);
         
-        Optional<Usuario> respuesta = usuarioRepository.findById(id);
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
         if (respuesta.isPresent()) {
             
             Usuario usuario = respuesta.get();
@@ -69,7 +71,22 @@ public class UsuarioServicio implements UserDetailsService{
         
         usuario.setClave(clave1);
         
-        usuarioRepository.save(usuario);     
+        usuarioRepositorio.save(usuario);     
+        } else {
+            throw new ErrorServicio("No Se Encontro El Usuario Solicitado");
+        }
+    }
+    
+    ///////////////// Metodo Eliminar Usuario
+    
+    public void eliminar(String id) throws ErrorServicio {
+        
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        if (respuesta.isPresent()) {
+            
+            Usuario usuario = respuesta.get();
+            
+            usuarioRepositorio.save(usuario);
         } else {
             throw new ErrorServicio("No Se Encontro El Usuario Solicitado");
         }
@@ -103,7 +120,7 @@ public class UsuarioServicio implements UserDetailsService{
     @Transactional
     public Usuario buscarPorId(String id) throws ErrorServicio{
         
-        Optional <Usuario> respuesta = usuarioRepository.findById(id);
+        Optional <Usuario> respuesta = usuarioRepositorio.findById(id);
         if (respuesta.isPresent()) {
             return respuesta.get();
         } else {
@@ -116,7 +133,7 @@ public class UsuarioServicio implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
        
-        Usuario usuario = usuarioRepository.buscarPorMail(mail);
+        Usuario usuario = usuarioRepositorio.buscarPorMail(mail);
         if (usuario != null) {
             List <GrantedAuthority> permisos = new ArrayList<>();
             
@@ -133,29 +150,12 @@ public class UsuarioServicio implements UserDetailsService{
             return null;
         }
     }   
- 
-    @Transactional
-    public void eliminar(String id) throws ErrorServicio {
-        
-        Optional<Usuario> respuesta = usuarioRepository.findById(id);
-        if (respuesta.isPresent()) {
-            
-            Usuario usuario = respuesta.get();
-            
-            usuarioRepository.save(usuario);
-        } else {
-            throw new ErrorServicio("No Se Encontro El Usuario Solicitado");
-        }
-    }
     
     public void usuarioVeCurso(String id_usuario, String id_curso){
     
         System.out.println("");
         
     }
-    
-    
-    
     
     
 }
