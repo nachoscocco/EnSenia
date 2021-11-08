@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Video extends Apartados {
+public class Video extends Apartado {
     
     @Id
     @GeneratedValue(generator = "uuid")

@@ -2,9 +2,7 @@
 package com.ensenia.Entity;
 
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -22,7 +20,7 @@ public class Seccion {
     private String titulo;
     
     @OneToMany //(mappedBy = "seccion", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) 
-    private List <Apartados> apartados;
+    private List <Apartado> apartados;
 
     /////////////////////////////////////////////////////////////////////
 
@@ -31,7 +29,7 @@ public class Seccion {
     public Seccion() {
     }
 
-    public Seccion(String id, Integer numero, String titulo, List<Apartados> apartados) {
+    public Seccion(String id, Integer numero, String titulo, List<Apartado> apartados) {
         this.id = id;
         this.numero = numero;
         this.titulo = titulo;
@@ -66,11 +64,11 @@ public class Seccion {
         this.titulo = titulo;
     }
 
-    public List<Apartados> getApartados() {
+    public List<Apartado> getApartados() {
         return apartados;
     }
 
-    public void setApartados(List<Apartados> apartados) {
+    public void setApartados(List<Apartado> apartados) {
         this.apartados = apartados;
     }
 

@@ -3,7 +3,6 @@ package com.ensenia.Service;
 
 import com.ensenia.Entity.Usuario;
 import com.ensenia.Error.ErrorServicio;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -79,6 +78,7 @@ public class UsuarioServicio implements UserDetailsService{
     
     ///////////////// Metodo Eliminar Usuario
     
+    @Transactional
     public void eliminar(String id) throws ErrorServicio {
         
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
