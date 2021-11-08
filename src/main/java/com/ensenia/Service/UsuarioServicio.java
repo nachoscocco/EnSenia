@@ -150,7 +150,6 @@ public class UsuarioServicio implements UserDetailsService{
             return null;
         }
     }   
-
     
     public void usuarioVeCurso(String id_usuario, String id_curso){
     
