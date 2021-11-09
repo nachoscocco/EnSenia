@@ -10,7 +10,8 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kodchasan:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kodchasan:wght@400;500&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../abm/css/styles.css">
 
   <title>Gestionar Cursos</title>
@@ -19,28 +20,27 @@
 <body>
 
   <!------------------------------------------- NAV ----------------------------------------------->
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <img src="../abm/image/Logo.png" alt="" width="30" height="auto" class="d-inline-block align-text-top">
-        En-senia
-      </a>
+      <a class="navbar-brand" href="../index.html"><img src="../abm/image/Logo.png" alt="" class="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="/lista">Listar</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Disabled</a></li>
-          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">Gestion</a>
+          <li class="nav-item"><a href="../abm/lista.html">Listar</a></li>
+          <li class="nav-item"><a href="#">Disabled</a></li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Gestion
+            </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="/abm_cursos">Cursos</a></li>
-              <li><a class="dropdown-item" href="/abm_seccion">Seccion</a></li>
-              <li><a class="dropdown-item" href="/abm_apartados">Apartados</a></li>
-              <li><a class="dropdown-item" href="/abm_grupo">Grupos</a></li>
+              <li><a class="dropdown-item" href="../abm/abm_cursos.html">Cursos</a></li>
+              <li><a class="dropdown-item" href="../abm/abm_seccion.html">Seccion</a></li>
+              <li><a class="dropdown-item" href="../abm/abm_apartados.html">Apartados</a></li>
+              <li><a class="dropdown-item" href="../abm/abm_grupo.html">Grupos</a></li>
             </ul>
           </li>
         </ul>
@@ -48,6 +48,17 @@
     </div>
   </nav>
 
+   <!-- <div class="header">
+    <img src="../static/image/Logo.png" class="logo" alt="logo En-seña">
+    
+    <div class="header-right">
+      <button class="ingresar" onclick="botonIngreso()">Ingresar</button>
+      <button onclick="botonRegistro()">Registrarse</button>
+    </div>
+  </div> -->
+
+
+  <!------------------------------------------- MAIN ----------------------------------------------->
   <main>
     <div class="m-0 row justify-content-center">
       <div class="col-auto mt-2">
@@ -66,35 +77,50 @@
           <div class="card card-body">
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Alta Cursos</label><hr>
             <div class="col-auto m-5 ml-5 mr-5" style="margin-top:90px !important">
+
+              <!--Formulario Alta Cursos-->
               <form action="alta_cu" method="POST">
                 <div class="mb-3 ">
-                  <label for="nombre" class="form-label">Nombre Curso</label>
+                  <label for="nombre" class="form-label">Titulo Curso</label>
                   <input type="text" class="form-control" id="nombre" name="nombre">
                 </div>
-                <br><br>
+
+                <div class="mb-3 ">
+                  <label for="duracion" class="form-label">Duracion Curso</label>
+                  <input type="time" class="form-control" id="time" name="duracion">
+                </div>
+
+                <div class="mb-3 ">
+                  <label for="descripcion" class="form-label">Descripcion</label>
+                  <input type="text" class="form-control" id="about" name="descripcion">
+                </div>
+
+                <div class="mb-3 ">
+                  <label for="grupo" class="form-label">Grupo</label>
+                  <input type="text" class="form-control" id="group" name="grupo">
+                </div>
                 <button type="submit" class="btn btn-primary  btn-block">Guardar</button>
               </form>
             </div>
-
-
           </div>
         </div>
       </div>
+
+      <!--Formulario Baja Cursos-->
       <div class="col-auto">
-        <div class="collapse multi-collapse" id="bajaAutor">
+        <div class="collapse multi-collapse" id="bajaCurso">
           <div class="card card-body">
-            <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Eliminar Autor</label>
+            <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Eliminar Curso</label>
             <hr>
             <div class="col-auto m-5 ml-5 mr-5" style="margin-top:90px !important">
               <form action="baja_au" method="POST">
                 <div class="mb-3">
-                  <label for="selecAutor" class="form-label">Seleccione un Autor</label>
-                  <select id="selecAutor" class="form-select" name="id_autor">
+                  <label for="selecCurso" class="form-label">Seleccione Curso</label>
+                  <select id="selecCurso" class="form-select" name="id_curso">
                     <option th:each="autor: ${autores}" th:value="${autor.id_autor}" th:text="${autor.nombre}"></option>
+                    <!--??-->
                   </select>
                 </div>
-
-                <br><br>
                 <button type="submit" class="btn btn-danger">Eliminar</button>
               </form>
             </div>
@@ -102,37 +128,53 @@
         </div>
       </div>
 
+      <!--Formulario Modificacion de Cursos-->
       <div class="col-auto">
-        <div class="collapse multi-collapse" id="modifAutor">
+        <div class="collapse multi-collapse" id="modifCurso">
           <div class="card card-body">
-            <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Modificar Autor</label>
-            <hr>
+            <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Modificar Curso</label><hr>
             <div class="col-auto m-5 ml-5 mr-5" style="margin-top:70px !important">
               <form action="modif_au" method="POST">
                 <div class="mb-3 ">
-                  <label for="disabledSelect" class="form-label">Seleccione un Autor</label>
+                  <label for="disabledSelect" class="form-label">Seleccione Curso</label>
                   <select id="seleclibros" class="form-select" name="id_autor">
                     <option th:each="autor :${autores}" th:value="${autor.id_autor}" th:text="${autor.nombre}"></option>
                   </select>
-                  <label for="nombre" class="form-label">Nuevo nombre:</label>
-                  <input type="text" class="form-control" id="nombre" name="nuevoNombre">
                 </div>
+                  <div class="mb-3 ">
+                    <label for="nombre" class="form-label">Titulo Curso</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre">
+                  </div>
+  
+                  <div class="mb-3 ">
+                    <label for="duracion" class="form-label">Duracion Curso</label>
+                    <input type="time" class="form-control" id="time" name="duracion">
+                  </div>
+  
+                  <div class="mb-3 ">
+                    <label for="descripcion" class="form-label">Descripcion</label>
+                    <input type="text" class="form-control" id="about" name="descripcion">
+                  </div>
+  
+                  <div class="mb-3 ">
+                    <label for="grupo" class="form-label">Grupo</label>
+                    <input type="text" class="form-control" id="group" name="grupo">
+                  </div>
                 <button type="submit" class="btn btn-success  btn-block">Modificar</button>
               </form>
             </div>
-
-
           </div>
         </div>
       </div>
     </div>
   </main>
-  
+
   <!------------------------------------------- FOOTER----------------------------------------------->
 
   <footer>
     <div>©️ 2021 Copyright:
-      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a> <!--Estilado en CSS-->
+      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+      <!--Estilado en CSS-->
     </div>
   </footer>
 
