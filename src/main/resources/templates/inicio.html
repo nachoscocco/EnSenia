@@ -8,8 +8,8 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  <link rel="stylesheet" href="../static/styles/stylesmain.css">
-  <title>En-seña</title>
+  <link rel="stylesheet" href="styles/stylesmain.css">
+  <title>En-seña - Inicio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,9 +20,12 @@
 <body>
 
   <!-------------------------------------------BARRA NAVEGACION----------------------------------------------->
-
-  <div class="header">
-    <img src="../static/image/Logo.png" class="logo" alt="logo En-seña">
+<!--th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre + ' ' + session.usuariosession.apellido}"
+th:href="@{/loguearse(id=__${session.usuariosession.id}__)}" 
+th:href="@{/mascota/mis-mascotas}"
+-->
+  <div class="header" >
+    <img src="image/Logo.png" class="logo" alt="logo En-seña">
     <!--agregue alt-->
     <div class="header-right">
       <button class="ingresar" onclick="botonIngreso()">Ingresar</button>
@@ -36,12 +39,12 @@
     <!--Formulario Ingreso/Registro-->
     <div id="myDiv" style="display: none;">
       <!--Sacar style / ver funcion en js-->
-      <form class="container-form">
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
+      <form action="/loguearse" method="POST" class="container-form" enctype="multipart/form-data">
+        <label for="mail"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="mail" required>
 
         <label for="psw"><b>Contraseña</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" placeholder="Enter Password" name="contrasenia" required>
 
         <input type="checkbox" id="exampleCheck1">
         <label for="exampleCheck1">Recordarme</label>
@@ -52,24 +55,31 @@
 
     <div id="myDiv2" style="display: none;">
       <!--Sacar style / ver funcion en js-->
-      <form class="container-form">
-        <label for="name"><b>Nombre</b></label>
-        <input type="text" placeholder="Nombre" name="name" required>
+      <form action="/registrar" method="POST" class="container-form" enctype="multipart/form-data">
+          
+            <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
+            <p th:if="${registro != null}" th:text="${registro}" style="color:green"></p> 
+        
+            <label for="name"><b>Nombre</b></label>
+        <input type="text" placeholder="Nombre" name="nombre" required th:value="${nombre}">
 
         <label for="lastname"><b>Apellido</b></label>
-        <input type="text" placeholder="Apellido" name="srn" required>
+        <input type="text" placeholder="Apellido" name="apellido" required th:value="${apellido}">
 
         <label for="mail"> <b>Email</b></label>
-        <input type="text" required>
+        <input type="text" required name="mail" th:value="${mail}">
 
         <label for="psw"> <b>Contraseña</b></label>
-        <input type="password" required>
+        <input type="password" required name="contrasenia" th:value="${contrasenia}">
+        
+        <label for="psw"> <b>Repita La Contraseña</b></label>
+        <input type="password" required name="contrasenia2" th:value="${contrasenia2}">
 
-        <button type="submit" class="btn">Crear Cuenta</button>
+        <button type="submit" class="btn" >Crear Cuenta</button>
       </form>
     </div>
 
-    <img src="../static/image/3715.jpg" class="bg-img" alt="banner"><!--Cambio nuevo. Saque style/agregue clase-->
+    <img src="image/3715.jpg" class="bg-img" alt="banner"><!--Cambio nuevo. Saque style/agregue clase-->
     <div class="content">
       <h1>APRENDIENDO A INCLUIR</h1>
       <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis
@@ -86,7 +96,7 @@
     </div>
   </footer>
 
-  <script src="../templates/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 

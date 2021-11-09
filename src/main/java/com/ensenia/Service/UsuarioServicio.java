@@ -3,7 +3,6 @@ package com.ensenia.Service;
 
 import com.ensenia.Entity.Usuario;
 import com.ensenia.Error.ErrorServicio;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,9 +42,11 @@ public class UsuarioServicio implements UserDetailsService{
         usuario.setMail(mail);
         
         String encriptada = new BCryptPasswordEncoder().encode(clave1);
+        
         usuario.setClave(encriptada);
         
-        usuario.setClave(clave1);
+//        System.out.println("clave = " + usuario.getClave());
+//        usuario.setClave(clave1);
         
         usuarioRepositorio.save(usuario);
     }
@@ -79,6 +80,7 @@ public class UsuarioServicio implements UserDetailsService{
     
     ///////////////// Metodo Eliminar Usuario
     
+    @Transactional
     public void eliminar(String id) throws ErrorServicio {
         
         Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
@@ -134,10 +136,13 @@ public class UsuarioServicio implements UserDetailsService{
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
        
         Usuario usuario = usuarioRepositorio.buscarPorMail(mail);
+       
+        System.out.println("Linea 138 = " + usuario);
+        
         if (usuario != null) {
             List <GrantedAuthority> permisos = new ArrayList<>();
             
-            GrantedAuthority permiso1 = new SimpleGrantedAuthority("ROLO_USUARIO_REGISTRADO");
+            GrantedAuthority permiso1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
             permisos.add(permiso1);
             
             ServletRequestAttributes attr = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
@@ -145,6 +150,7 @@ public class UsuarioServicio implements UserDetailsService{
             session.setAttribute("usuariosession", usuario);
             
             User user = new User(usuario.getMail(), usuario.getClave(), permisos);
+//            System.out.println("User + " + user.toString());
             return user;
         } else {
             return null;

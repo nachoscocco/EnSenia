@@ -5,7 +5,6 @@ package com.ensenia.Configuration;
 
 import com.ensenia.Service.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -40,11 +39,11 @@ public class Security extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                         .antMatchers("/css/*", "/js/*","/img/*", "/**").permitAll()
                 .and().formLogin()
-                        .loginPage("/login") // Que formulario esta mi login
-                                .loginProcessingUrl("/logincheck")
-                                .usernameParameter("username") // Como viajan los datos del logueo
-                                .passwordParameter("password")// Como viajan los datos del logueo
-                                .defaultSuccessUrl("/inicio") // A que URL viaja
+                        .loginPage("/inicio") // Que formulario esta mi login
+                                .loginProcessingUrl("/loguearse")
+                                .usernameParameter("mail") // Como viajan los datos del logueo
+                                .passwordParameter("contrasenia")// Como viajan los datos del logueo
+                                .defaultSuccessUrl("/index") // A que URL viaja
                                 .permitAll()
                         .and().logout() // Aca configuro la salida
                                 .logoutUrl("/logout")
