@@ -13,34 +13,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kodchasan:wght@400;500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="../abm/css/styles.css">
+  
   <title>Gestionar Secciones</title>
 </head>
 
-<body class="m-0 row">
-
+<body>
   <!------------------------------------------- NAV ----------------------------------------------->
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <img src="../abm/image/Logo.png" alt="" width="30" height="auto" class="d-inline-block align-text-top">
-        En-senia
-      </a>
+      <a class="navbar-brand" href="../index.html"><img src="../abm/image/Logo.png" alt="" class="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="/lista">Listar</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Disabled</a></li>
-          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">Gestion</a>
+          <li class="nav-item"><a href="../abm/lista.html">Listar</a></li>
+          <li class="nav-item"><a href="#">Disabled</a></li>
+          <li class="nav-item dropdown">
+            <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Gestion
+            </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="/abm_cursos">Cursos</a></li>
-              <li><a class="dropdown-item" href="/abm_seccion">Seccion</a></li>
-              <li><a class="dropdown-item" href="/abm_apartados">Apartados</a></li>
-              <li><a class="dropdown-item" href="/abm_grupo">Grupos</a></li>
+              <li><a class="dropdown-item" href="../abm/abm_cursos.html">Cursos</a></li>
+              <li><a class="dropdown-item" href="../abm/abm_seccion.html">Seccion</a></li>
+              <li><a class="dropdown-item" href="../abm/abm_apartados.html">Apartados</a></li>
+              <li><a class="dropdown-item" href="../abm/abm_grupo.html">Grupos</a></li>
             </ul>
           </li>
         </ul>
@@ -112,7 +111,6 @@
       </div>
 
       <!--Formulario Baja de Seccion-->
-
       <div class="col-auto">
         <div class="collapse multi-collapse" id="modifSeccion">
           <div class="card card-body">
@@ -125,13 +123,10 @@
                   <select id="selecSeccion" class="form-select" name="idSeccion">
                     <option th:each="seccion :${secciones}" th:value="${seccion.id_Seccion}"
                       th:text="${seccion.nombre}"></option>
-                    <!--??-->
-
                   </select>
-                  <label for="nombre" class="form-label">Nuevo nombre:</label>
+                  <label for="nombre" class="form-label">Nuevo Titulo:</label>
                   <input type="text" class="form-control" id="nuevoNombre" name="nuevoNombre">
                 </div>
-                <br><br>
                 <button type="submit" class="btn btn-success  btn-block">Modificar</button>
               </div>
             </form>

@@ -30,6 +30,7 @@ public class mainController {
     public String registrar(ModelMap modelo,@RequestParam String nombre,@RequestParam String apellido,@RequestParam String mail,@RequestParam String contrasenia,@RequestParam String contrasenia2){
         
         try {
+            
             usuarioServicio.registrar(nombre, apellido, mail, contrasenia, contrasenia2);
             
             modelo.put("registrar", "Bienvenido a En-Seña");
