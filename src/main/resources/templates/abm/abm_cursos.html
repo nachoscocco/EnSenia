@@ -22,14 +22,14 @@
   <!------------------------------------------- NAV ----------------------------------------------->
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../index.html"><img src="../abm/image/Logo.png" alt="" class="logo"></a>
+      <a class="navbar-brand" href="/index"><img src="../abm/image/Logo.png" alt="" class="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a href="../abm/lista.html">Listar</a></li>
+          <li class="nav-item"><a href="/abm/lista.html">Listar</a></li>
           <li class="nav-item"><a href="#">Disabled</a></li>
           <li class="nav-item dropdown">
             <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -37,10 +37,9 @@
               Gestion
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="../abm/abm_cursos.html">Cursos</a></li>
-              <li><a class="dropdown-item" href="../abm/abm_seccion.html">Seccion</a></li>
-              <li><a class="dropdown-item" href="../abm/abm_apartados.html">Apartados</a></li>
-              <li><a class="dropdown-item" href="../abm/abm_grupo.html">Grupos</a></li>
+              <li><a class="dropdown-item" href="/abm_cursos">Cursos</a></li>
+              <li><a class="dropdown-item" href="/abm_secciones">Seccion</a></li>
+              <li><a class="dropdown-item" href="/abm_apartados">Apartados</a></li>
             </ul>
           </li>
         </ul>
@@ -79,25 +78,28 @@
             <div class="col-auto m-5 ml-5 mr-5" style="margin-top:90px !important">
 
               <!--Formulario Alta Cursos-->
-              <form action="alta_cu" method="POST">
+              <form action="/alta_curso" method="POST">
                 <div class="mb-3 ">
                   <label for="nombre" class="form-label">Titulo Curso</label>
-                  <input type="text" class="form-control" id="nombre" name="nombre">
+                  <input type="text" class="form-control" id="nombre" name="titulo">
                 </div>
 
                 <div class="mb-3 ">
                   <label for="duracion" class="form-label">Duracion Curso</label>
-                  <input type="time" class="form-control" id="time" name="duracion">
+                  <input type="number" class="form-control" id="time" name="duracion">
                 </div>
 
                 <div class="mb-3 ">
                   <label for="descripcion" class="form-label">Descripcion</label>
                   <input type="text" class="form-control" id="about" name="descripcion">
                 </div>
-
-                <div class="mb-3 ">
-                  <label for="grupo" class="form-label">Grupo</label>
-                  <input type="text" class="form-control" id="group" name="grupo">
+                <div class="mb-3">
+                              <label for="selecgrupos" class="form-label">Grupo</label>
+                              <select id="selecgrupos" class="form-select" name="grupoId">
+                                 <option th:each="grupo :${grupos}"
+                                        th:value="${grupo.getId()}"
+                                        th:text="${grupo.getDescripcion()}"></option>    
+                              </select>
                 </div>
                 <button type="submit" class="btn btn-primary  btn-block">Guardar</button>
               </form>
@@ -113,11 +115,13 @@
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Eliminar Curso</label>
             <hr>
             <div class="col-auto m-5 ml-5 mr-5" style="margin-top:90px !important">
-              <form action="baja_au" method="POST">
+              <form action="/baja_curso" method="POST">
                 <div class="mb-3">
                   <label for="selecCurso" class="form-label">Seleccione Curso</label>
-                  <select id="selecCurso" class="form-select" name="id_curso">
-                    <option th:each="autor: ${autores}" th:value="${autor.id_autor}" th:text="${autor.nombre}"></option>
+                  <select id="selecCurso" class="form-select" name="cursoId">
+                    <option th:each="curso : ${cursos}" 
+                            th:value="${curso.id}" 
+                            th:text="${curso.titulo}"></option>
                     <!--??-->
                   </select>
                 </div>
@@ -134,21 +138,21 @@
           <div class="card card-body">
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Modificar Curso</label><hr>
             <div class="col-auto m-5 ml-5 mr-5" style="margin-top:70px !important">
-              <form action="modif_au" method="POST">
+              <form action="/modif_curso" method="POST">
                 <div class="mb-3 ">
                   <label for="disabledSelect" class="form-label">Seleccione Curso</label>
-                  <select id="seleclibros" class="form-select" name="id_autor">
-                    <option th:each="autor :${autores}" th:value="${autor.id_autor}" th:text="${autor.nombre}"></option>
+                  <select id="selecCurso" class="form-select" name="cursoId">
+                    <option th:each="curso :${cursos}" th:value="${curso.id}" th:text="${curso.titulo}"></option>
                   </select>
                 </div>
                   <div class="mb-3 ">
                     <label for="nombre" class="form-label">Titulo Curso</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre">
+                    <input type="text" class="form-control" id="nombre" name="titulo">
                   </div>
   
                   <div class="mb-3 ">
                     <label for="duracion" class="form-label">Duracion Curso</label>
-                    <input type="time" class="form-control" id="time" name="duracion">
+                    <input type="number" class="form-control" id="time" name="duracion">
                   </div>
   
                   <div class="mb-3 ">
@@ -156,10 +160,14 @@
                     <input type="text" class="form-control" id="about" name="descripcion">
                   </div>
   
-                  <div class="mb-3 ">
-                    <label for="grupo" class="form-label">Grupo</label>
-                    <input type="text" class="form-control" id="group" name="grupo">
-                  </div>
+                  <div class="mb-3">
+                              <label for="selecgrupos" class="form-label">Grupo</label>
+                              <select id="selecgrupos" class="form-select" name="grupoId">
+                                 <option th:each="grupo :${grupos}"
+                                        th:value="${grupo.getId()}"
+                                        th:text="${grupo.getDescripcion()}"></option>    
+                              </select>
+                </div>
                 <button type="submit" class="btn btn-success  btn-block">Modificar</button>
               </form>
             </div>
