@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kodchasan:wght@400;500&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="../abm/css/styles.css">
+  <link rel="stylesheet" href="styles/stylesabm.css">
 
   <title>Gestionar Cursos</title>
 </head>
@@ -22,7 +22,7 @@
   <!------------------------------------------- NAV ----------------------------------------------->
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/index"><img src="../abm/image/Logo.png" alt="" class="logo"></a>
+      <a class="navbar-brand" href="/index"><img src="" alt="logo En-seña" class="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -122,7 +122,6 @@
                     <option th:each="curso : ${cursos}" 
                             th:value="${curso.id}" 
                             th:text="${curso.titulo}"></option>
-                    <!--??-->
                   </select>
                 </div>
                 <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -182,7 +181,6 @@
   <footer>
     <div>©️ 2021 Copyright:
       <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-      <!--Estilado en CSS-->
     </div>
   </footer>
 
