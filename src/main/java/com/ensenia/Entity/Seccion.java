@@ -19,8 +19,8 @@ public class Seccion {
     private Integer numero;
     private String titulo;
     
-    @OneToMany
-    private List <Apartados> apartados;
+    @OneToMany //(mappedBy = "seccion", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) 
+    private List <Apartado> apartados;
 
     /////////////////////////////////////////////////////////////////////
 
@@ -29,7 +29,7 @@ public class Seccion {
     public Seccion() {
     }
 
-    public Seccion(String id, Integer numero, String titulo, List<Apartados> apartados) {
+    public Seccion(String id, Integer numero, String titulo, List<Apartado> apartados) {
         this.id = id;
         this.numero = numero;
         this.titulo = titulo;
@@ -64,11 +64,11 @@ public class Seccion {
         this.titulo = titulo;
     }
 
-    public List<Apartados> getApartados() {
+    public List<Apartado> getApartados() {
         return apartados;
     }
 
-    public void setApartados(List<Apartados> apartados) {
+    public void setApartados(List<Apartado> apartados) {
         this.apartados = apartados;
     }
 

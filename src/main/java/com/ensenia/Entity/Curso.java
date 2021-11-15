@@ -3,10 +3,10 @@ package com.ensenia.Entity;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -33,9 +33,11 @@ public class Curso {
     private Date fecha_alta;
     
     @ManyToOne
-    private Grupo grupo;
+    @JoinColumn(name = "id_grupo") 
+    private Grupo grupo; 
+ 
 
-    @OneToMany
+    @OneToMany //(mappedBy = "seccion", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) 
     private List <Seccion> secciones;
 
     

@@ -26,7 +26,8 @@ import com.ensenia.Repository.UsuarioRepositorio;
 public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
-    private UsuarioRepositorio usuarioRepository;
+    private UsuarioRepositorio usuarioRepositorio;
+
     
     ///////////// Metodo Registrar Usuario
     
@@ -41,11 +42,13 @@ public class UsuarioServicio implements UserDetailsService{
         usuario.setMail(mail);
         
         String encriptada = new BCryptPasswordEncoder().encode(clave1);
+        
         usuario.setClave(encriptada);
         
-        usuario.setClave(clave1);
+//        System.out.println("clave = " + usuario.getClave());
+//        usuario.setClave(clave1);
         
-        usuarioRepository.save(usuario);
+        usuarioRepositorio.save(usuario);
     }
     
     //////////// Metodo Modificar Usuario
@@ -55,7 +58,7 @@ public class UsuarioServicio implements UserDetailsService{
     
         validar(nombre, apellido, mail, clave1, clave2);
         
-        Optional<Usuario> respuesta = usuarioRepository.findById(id);
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
         if (respuesta.isPresent()) {
             
             Usuario usuario = respuesta.get();
@@ -69,7 +72,23 @@ public class UsuarioServicio implements UserDetailsService{
         
         usuario.setClave(clave1);
         
-        usuarioRepository.save(usuario);     
+        usuarioRepositorio.save(usuario);     
+        } else {
+            throw new ErrorServicio("No Se Encontro El Usuario Solicitado");
+        }
+    }
+    
+    ///////////////// Metodo Eliminar Usuario
+    
+    @Transactional
+    public void eliminar(String id) throws ErrorServicio {
+        
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+        if (respuesta.isPresent()) {
+            
+            Usuario usuario = respuesta.get();
+            
+            usuarioRepositorio.save(usuario);
         } else {
             throw new ErrorServicio("No Se Encontro El Usuario Solicitado");
         }
@@ -103,7 +122,7 @@ public class UsuarioServicio implements UserDetailsService{
     @Transactional
     public Usuario buscarPorId(String id) throws ErrorServicio{
         
-        Optional <Usuario> respuesta = usuarioRepository.findById(id);
+        Optional <Usuario> respuesta = usuarioRepositorio.findById(id);
         if (respuesta.isPresent()) {
             return respuesta.get();
         } else {
@@ -116,11 +135,14 @@ public class UsuarioServicio implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
        
-        Usuario usuario = usuarioRepository.buscarPorMail(mail);
+        Usuario usuario = usuarioRepositorio.buscarPorMail(mail);
+       
+        System.out.println("Linea 138 = " + usuario);
+        
         if (usuario != null) {
             List <GrantedAuthority> permisos = new ArrayList<>();
             
-            GrantedAuthority permiso1 = new SimpleGrantedAuthority("ROLO_USUARIO_REGISTRADO");
+            GrantedAuthority permiso1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
             permisos.add(permiso1);
             
             ServletRequestAttributes attr = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
@@ -128,25 +150,17 @@ public class UsuarioServicio implements UserDetailsService{
             session.setAttribute("usuariosession", usuario);
             
             User user = new User(usuario.getMail(), usuario.getClave(), permisos);
+//            System.out.println("User + " + user.toString());
             return user;
         } else {
             return null;
         }
     }   
- 
-    ///////////////// Met
     
-    public void eliminar(String id) throws ErrorServicio {
+    public void usuarioVeCurso(String id_usuario, String id_curso){
+    
+        System.out.println("");
         
-        Optional<Usuario> respuesta = usuarioRepository.findById(id);
-        if (respuesta.isPresent()) {
-            
-            Usuario usuario = respuesta.get();
-            
-            usuarioRepository.save(usuario);
-        } else {
-            throw new ErrorServicio("No Se Encontro El Usuario Solicitado");
-        }
     }
     
     

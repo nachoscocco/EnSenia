@@ -1,13 +1,17 @@
 
 package com.ensenia.Entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public abstract class Apartados {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) 
+public abstract class Apartado {
     
     @Id
     @GeneratedValue(generator = "uuid")
@@ -21,10 +25,10 @@ public abstract class Apartados {
 
     //////////////// Constructores
     
-    public Apartados() {
+    public Apartado() {
     }
     
-    public Apartados(String id, Integer numero, String titulo) {
+    public Apartado(String id, Integer numero, String titulo) {
         this.id = id;
         this.numero = numero;
         this.titulo = titulo;
