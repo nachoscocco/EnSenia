@@ -119,6 +119,12 @@ public class mainController {
         return "redirect:/index.html";
     }
     
+        @GetMapping("/contenido")
+    public String contenido(HttpSession session) {
+       
+        return "contenido.html";
+    }
+    
     
     
  
