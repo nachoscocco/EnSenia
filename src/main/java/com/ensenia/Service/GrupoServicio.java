@@ -65,4 +65,17 @@ public class GrupoServicio {
         }
 
     }
+    
+    @Transactional
+    public Grupo buscaGrupoPorId(String id) throws ErrorServicio{
+        Optional<Grupo> respuesta = grupoRepositorio.findById(id);
+        
+        if(respuesta.isPresent()){
+            
+            return respuesta.get();
+        }
+        else{
+            return null;
+        }
+    }
 }
