@@ -20,7 +20,9 @@ public class SeccionServicio {
 
     @Transactional
     public void alta(String id_curso, String titulo, Integer numero) throws ErrorServicio {
-
+        
+ 
+    
         validar(titulo, numero);
         Seccion seccion = new Seccion();
 
@@ -74,9 +76,9 @@ public class SeccionServicio {
         if (titulo == null || titulo.isEmpty()) {
             throw new ErrorServicio("El titulo no puede ser nulo.");
         }
-        if (numero == null || numero >= 1) {
+        if (numero == null || numero <= 0) {
             throw new ErrorServicio("El numero tiene que ser mayor a '0'. ");
-        }
+        } 
     }
 
     @Transactional

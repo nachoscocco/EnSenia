@@ -1,9 +1,27 @@
 
 package com.ensenia.Controller;
 
+import com.ensenia.Entity.Curso;
+import com.ensenia.Entity.Grupo;
+import com.ensenia.Entity.Seccion;
+import com.ensenia.Entity.Texto;
 import com.ensenia.Entity.Usuario;
+import com.ensenia.Entity.Video;
 import com.ensenia.Error.ErrorServicio;
+import com.ensenia.Repository.CursoRepositorio;
+import com.ensenia.Repository.GrupoRepositorio;
+import com.ensenia.Repository.SeccionRepositorio;
+import com.ensenia.Repository.TextoRepositorio;
+import com.ensenia.Repository.UsuarioRepositorio;
+import com.ensenia.Repository.VideoRepositorio;
+import com.ensenia.Service.CursoServicio;
+import com.ensenia.Service.GrupoServicio;
+import com.ensenia.Service.SeccionServicio;
+import com.ensenia.Service.TextoServicio;
 import com.ensenia.Service.UsuarioServicio;
+
+import com.ensenia.Service.VideoServicio;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,11 +36,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping ("/")
 public class mainController {
     
+                 /* SERVICIOS*/
+    
     @Autowired
     private UsuarioServicio usuarioServicio; 
+    @Autowired
+    private CursoServicio cursoServicio;
+    @Autowired
+    private GrupoServicio grupoServicio;
+    @Autowired
+    private SeccionServicio seccionServicio;
+    @Autowired
+    private TextoServicio textoServicio;
+    @Autowired
+    private VideoServicio videoServicio;
+    
+    @Autowired
+    private UsuarioRepositorio usuarioRepositorio; 
+    @Autowired
+    private CursoRepositorio cursoRepositorio;
+    @Autowired
+    private GrupoRepositorio grupoRepositorio;
+    @Autowired
+    private SeccionRepositorio seccionRepositorio;
+    @Autowired
+    private TextoRepositorio textoRepositorio;
+    @Autowired
+    private VideoRepositorio videoRepositorio;
+            
+            
     
     @GetMapping("/")
-    public String index() {
+    public String inicio() {
         return "inicio.html";
     }
     
@@ -51,7 +96,7 @@ public class mainController {
     }
 
     @GetMapping("/index")
-    public String inicio(HttpSession session) {
+    public String index(HttpSession session) {
         
         Usuario login = (Usuario)session.getAttribute("usuariosession");
         
@@ -74,6 +119,15 @@ public class mainController {
         
         return "redirect:/index.html";
     }
+    
+    
+    
+ 
+    
+    
+    
+    
+    
     
     
 }
