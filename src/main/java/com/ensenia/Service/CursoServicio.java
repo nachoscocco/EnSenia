@@ -100,7 +100,9 @@ public class CursoServicio {
         Curso curso = respuesta.get();
         try{   
             curso.getSecciones().add(seccion);
-           cursoRepositorio.save(curso);
+            System.out.println("seccion a agregar perroo idd =="+seccion.getId());
+            System.out.println("seccion a agregar perro titulo =="+seccion.getTitulo());
+            cursoRepositorio.save(curso);
         }
         catch(Exception e){
             throw new ErrorServicio("Error interno en agregarSeccion");
@@ -130,6 +132,17 @@ public class CursoServicio {
        }else{
            throw new ErrorServicio("El Curso es incorrecto");
        }
+    }
+    
+    
+    public Curso buscarCursoPorId(String id)throws ErrorServicio{
+        Curso respuesta = cursoRepositorio.buscarCursoPorId(id);
+        if (respuesta !=null) {
+            return respuesta;
+        }
+        else{
+            throw new  ErrorServicio("El curso no existe"); 
+        }
     }
     
     
