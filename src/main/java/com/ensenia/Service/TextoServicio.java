@@ -3,6 +3,8 @@ package com.ensenia.Service;
 import com.ensenia.Entity.Texto;
 import com.ensenia.Error.ErrorServicio;
 import com.ensenia.Repository.TextoRepositorio;
+import java.sql.Clob;
+import java.sql.SQLException;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ public class TextoServicio {
     private SeccionServicio seccionservicio;
     
     @Transactional
-    public void alta(String contenido, String titulo, Integer numero, String id_seccion) throws ErrorServicio {
+    public void alta(String contenido, String titulo, Integer numero, String id_seccion) throws ErrorServicio ,SQLException{
 
         validar(contenido, titulo, numero);
 
@@ -27,10 +29,10 @@ public class TextoServicio {
         texto.setContenido(contenido);
         texto.setTitulo(titulo);
         texto.setNumero(numero);
-        
-        seccionservicio.agregarApartado(id_seccion, texto);
-        
         textoRepositorio.save(texto);
+       seccionservicio.agregarApartado(id_seccion, texto);
+        
+        
 
     }
 
@@ -50,7 +52,7 @@ public class TextoServicio {
     }
 
     @Transactional
-    public void modificar(String id, String contenido, String titulo, Integer numero, String id_seccion) throws ErrorServicio {
+    public void modificar(String id, String contenido, String titulo, Integer numero, String id_seccion) throws ErrorServicio,SQLException {
 
         validar(contenido, titulo, numero);
         Optional<Texto> respuesta = textoRepositorio.findById(id);
@@ -69,14 +71,14 @@ public class TextoServicio {
     }
 
     @Transactional
-    public void validar(String contenido, String titulo, Integer numero) throws ErrorServicio {
-        if (contenido == null || contenido.isEmpty()) {
+    public void validar(String contenido, String titulo, Integer numero) throws ErrorServicio ,SQLException {
+        if (contenido == null || contenido.length()==0) {
             throw new ErrorServicio("El titulo no puede ser nulo.");
         }
         if (titulo == null || titulo.isEmpty()) {
             throw new ErrorServicio("El titulo no puede ser nulo.");
         }
-        if (numero == null || numero >= 1) {
+        if (numero == null || numero < 1) {
             throw new ErrorServicio("El numero tiene que ser mayor a '0'. ");
         }
     }

@@ -23,6 +23,7 @@ import com.ensenia.Service.VideoServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -95,18 +96,27 @@ public class mainController {
     }
 
     @GetMapping("/index")
-    public String index(HttpSession session) {
+    public String index(HttpSession session,ModelMap modelo) {
+      try{  
+          Usuario login = loguearseSession(session);
+         modelo.put("isAdmin",isAdmin(login));
         
-        Usuario login = (Usuario)session.getAttribute("usuariosession");
-        
-//        System.out.println("login.toString())" + login.getNombre());
+          System.out.println("rol usuario"+login.getRol().getDescripcion() );
+        System.out.println("login==="+session.getId());
+      }catch(Exception e){
+            
+            modelo.put("error", e.getMessage());
+             return "inicio.html";
+      }
         
         
         return "index.html";
     }
     
     @PostMapping("/loguearse")
-    public String login(@RequestParam(required = false)String error,@RequestParam(required = false)String logout, ModelMap model) {
+    public String login(@RequestParam(required = false)String error,@RequestParam(required = false)String logout, ModelMap model,@RequestParam String mail,@RequestParam String contrasenia) {
+       
+
         if (error != null) {   
         model.put("error", "Nombre de Usuario O Clave Incorrectos");
         }
@@ -114,12 +124,10 @@ public class mainController {
             model.put("logout", "Ha Salido Correctamente De La Plataforma");
         }
         
-        System.out.println("Error = " + error);
-        
         return "redirect:/index.html";
     }
     
-        @GetMapping("/contenido")
+    @GetMapping("/contenido")
     public String contenido(HttpSession session) {
        
         return "contenido.html";
@@ -129,9 +137,24 @@ public class mainController {
     
  
     
+    public Usuario loguearseSession(HttpSession session){
+        Usuario login = (Usuario)session.getAttribute("usuariosession");
+        return login;
+    }
     
+   public Boolean isAdmin(Usuario user){
+      Boolean b = false;
+       System.out.println("user.getRol().getId()"+user.getRol().getId());
+      if(user.getRol().getId().equals("3") ){
+          b=true;
+          System.out.println("rol = "+b);
+           return b;
+      }else{
+         System.out.println("rol = "+b);
+      return b;
+      }
     
-    
+   }
     
     
     
