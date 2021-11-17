@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.ensenia.Controller;
 
 import com.ensenia.Entity.Curso;
@@ -139,14 +135,7 @@ public class abmController {
     @PostMapping("/alta_seccion")
     public String alta_seccion(ModelMap model,@RequestParam String cursoId,@RequestParam String titulo,@RequestParam Integer numero) throws Exception{
         try {
-          
-<<<<<<< HEAD
-            Curso curso = cursoServicio.buscarCursoPorId(cursoId);
 
-=======
-          
-            
->>>>>>> 8ef3dc984957c7011eba080e5084a96fd0b3ee34
              seccionServicio.alta(cursoId, titulo, numero);
         
             
