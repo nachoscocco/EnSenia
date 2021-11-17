@@ -67,6 +67,9 @@ h4{
     padding: 0.5em;
 
 }
+main{
+    padding: 20px
+}
 
 .coursesCard {
     display: flex;

@@ -1,8 +1,10 @@
 
 package com.ensenia.Service;
 
+import com.ensenia.Entity.Rol;
 import com.ensenia.Entity.Usuario;
 import com.ensenia.Error.ErrorServicio;
+import com.ensenia.Repository.RolRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +29,9 @@ public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+    
+    @Autowired
+    private RolRepositorio rolRepositorio;
 
     
     ///////////// Metodo Registrar Usuario
@@ -40,6 +45,8 @@ public class UsuarioServicio implements UserDetailsService{
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setMail(mail);
+        usuario.setRol(rolRepositorio.getById("1"));        //se le asigna el rol de usuario comun
+        
         
         String encriptada = new BCryptPasswordEncoder().encode(clave1);
         
@@ -69,7 +76,7 @@ public class UsuarioServicio implements UserDetailsService{
         
         String encriptada = new BCryptPasswordEncoder().encode(clave1);
         usuario.setClave(encriptada);
-        
+      
         usuario.setClave(clave1);
         
         usuarioRepositorio.save(usuario);     
@@ -136,13 +143,14 @@ public class UsuarioServicio implements UserDetailsService{
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
        
         Usuario usuario = usuarioRepositorio.buscarPorMail(mail);
+        Rol rol = rolRepositorio.getById(usuario.getId());
        
         System.out.println("Linea 138 = " + usuario);
         
         if (usuario != null) {
             List <GrantedAuthority> permisos = new ArrayList<>();
             
-            GrantedAuthority permiso1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
+            GrantedAuthority permiso1 = new SimpleGrantedAuthority("USUARIO_REG");
             permisos.add(permiso1);
             
             ServletRequestAttributes attr = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();

@@ -51,26 +51,44 @@
   <main>
     <div class="m-0 row justify-content-center">
       <div class="col-auto mt-2">
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#altaApartados" role="button" aria-expanded="false"
-          aria-controls="altaApartados">Alta</a>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#altaApartText" role="button" aria-expanded="false"
+          aria-controls="altaApartados">Alta TEXTO</a>
         <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#bajaApartText"
-          aria-expanded="false" aria-controls="bajaApartText">Baja</button>
+          aria-expanded="false" aria-controls="bajaApartText">Baja TEXTO</button>
         <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#modifApartText"
-          aria-expanded="false" aria-controls="modifApartText">Modificar</button>
+          aria-expanded="false" aria-controls="modifApartText">Modificar TEXTO</button>
+        <p style="color:red" th:if="${error!=null}" th:text="${error}"></p>
+      </div>
+    </div>
+      <div class="m-0 row justify-content-center">
+      <div class="col-auto mt-2">
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#altaApartVid" role="button" aria-expanded="false"
+          aria-controls="altaApartadosVid">Alta VIDEO</a>
+        <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#bajaApartVid"
+          aria-expanded="false" aria-controls="bajaApartText">Baja VIDEO</button>
+        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#modifApartVid"
+          aria-expanded="false" aria-controls="modifApartText">Modificar VIDEO</button>
         <p style="color:red" th:if="${error!=null}" th:text="${error}"></p>
       </div>
     </div>
     <div class="m-5 row justify-content-center">
       <div class="col-auto">
-        <div class="collapse multi-collapse" id="altaApartados">
+        <div class="collapse multi-collapse" id="altaApartText">
           <div class="card card-body">
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Alta de Apartados Texto</label>
             <hr>
-            <form action="alta_lib" method="POST">
+            <form action="/alta_texto" method="POST">
               <div class="col-auto m-4 ml-4 mr-4" style="margin-top:90px !important">
                 <div class="mb-3 ">
+                  <label for="selecSeccion" class="form-label">Seleccione una Seccion</label>
+                  <select id="selecSeccion" class="form-select" name="seccionId">
+                    <option th:each="seccion :${secciones}" th:value="${seccion.id}"
+                      th:text="${seccion.titulo}"></option>
+                  </select>
+                </div>  
+                <div class="mb-3 ">
                   <label for="num" class="form-label">Numero:</label>
-                  <input type="number" class="form-control" id="number" name="num">
+                  <input type="number" class="form-control" id="number" name="numero">
                 </div>
 
                 <div class="mb-3 ">
@@ -80,9 +98,9 @@
 
                 <div class="mb-3 ">
                   <label for="contenido" class="form-label">Contenido</label>
-                  <input type="text" class="form-control" id="contenido" name="contenido">
+                  <textarea type="clob" class="form-control" placeholder="Ingrese contenido" name="contenido" id="contenido" style="height: 100px"></textarea>
                 </div>
-
+                  
               </div>
               <button type="submit" class="btn btn-primary btn-block">Guardar</button>
             </form>
@@ -92,7 +110,7 @@
 
       <div class="m-5 row justify-content-center">
         <div class="col-auto">
-          <div class="collapse multi-collapse" id="altaApartados">
+          <div class="collapse multi-collapse" id="altaApartVid">
             <div class="card card-body">
               <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Alta de Apartados Video</label>
               <hr>
@@ -154,7 +172,7 @@
       </div>
 
       <div class="col-auto">
-        <div class="collapse multi-collapse" id="bajaApartText">
+        <div class="collapse multi-collapse" id="bajaApartVid">
           <div class="card card-body">
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Eliminar Apartado Video</label>
             <hr>
@@ -216,7 +234,7 @@
       </div>
 
       <div class="col-auto">
-        <div class="collapse multi-collapse" id="modifApartText">
+        <div class="collapse multi-collapse" id="modifApartVid">
           <div class="card card-body">
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Modificar Apartado Video</label>
             <hr>
