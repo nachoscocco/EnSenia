@@ -23,6 +23,7 @@ import com.ensenia.Service.SeccionServicio;
 import com.ensenia.Service.TextoServicio;
 import com.ensenia.Service.UsuarioServicio;
 import com.ensenia.Service.VideoServicio;
+import java.sql.Clob;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping ("/")
+@RequestMapping ("/abm")
 public class abmController {
     
     
@@ -139,8 +140,13 @@ public class abmController {
     public String alta_seccion(ModelMap model,@RequestParam String cursoId,@RequestParam String titulo,@RequestParam Integer numero) throws Exception{
         try {
           
+<<<<<<< HEAD
             Curso curso = cursoServicio.buscarCursoPorId(cursoId);
 
+=======
+          
+            
+>>>>>>> 8ef3dc984957c7011eba080e5084a96fd0b3ee34
              seccionServicio.alta(cursoId, titulo, numero);
         
             
@@ -186,9 +192,28 @@ public class abmController {
     
     
     
+    @GetMapping("/abm_apartados")
+    public String abm_apartados(ModelMap model){
+        publicarInfoTemplate(model);
+        
+    return "abm/abm_apartados.html";
+    }
     
-    
-    
+    @PostMapping("/alta_texto")
+    public String alta_texto(ModelMap model,@RequestParam String seccionId,@RequestParam String titulo,@RequestParam Integer numero,@RequestParam String contenido) throws Exception{
+        try {
+          
+            textoServicio.alta(contenido, titulo, numero, seccionId);
+            
+        
+            
+        } catch (ErrorServicio e) {
+            System.out.println("Error de servicio 'altaSeccion' ="+e.getMessage());
+            model.put("error",e.getMessage());
+        }
+        publicarInfoTemplate(model);
+        return "redirect:/abm_secciones";
+    }
     
     
     
@@ -208,7 +233,7 @@ public class abmController {
         model.put("grupos",grupos);
         List<Curso> cursos = cursoRepositorio.traerCursosAlta();
         model.put("cursos",cursos);
-        List<Seccion> secciones = seccionRepositorio.findAll();
+        List<Seccion> secciones = seccionRepositorio.traerSeccionesAlta();
         model.put("secciones",secciones);
         List<Texto> textos = textoRepositorio.findAll();
         model.put("textos",textos);

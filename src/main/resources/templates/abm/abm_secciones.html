@@ -21,7 +21,7 @@
   <!------------------------------------------- NAV ----------------------------------------------->
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/index"><img src="../abm/image/Logo.png" alt="" class="logo"></a>
+      <a class="navbar-brand" href="index.html"><img src="image/Logo.png" alt="" class="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,9 +36,9 @@
               Gestion
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="/abm_cursos">Cursos</a></li>
-              <li><a class="dropdown-item" href="/abm_secciones">Seccion</a></li>
-              <li><a class="dropdown-item" href="/abm_apartados">Apartados</a></li>
+              <li><a class="dropdown-item" href="/abm/abm_cursos">Cursos</a></li>
+              <li><a class="dropdown-item" href="/abm/abm_secciones">Seccion</a></li>
+              <li><a class="dropdown-item" href="/abm/abm_apartados">Apartados</a></li>
             </ul>
           </li>
         </ul>
@@ -95,6 +95,7 @@
           </div>
         </div>
       </div>
+
       <!--Formulario Baja de Seccion-->
       <div class="col-auto">
         <div class="collapse multi-collapse" id="bajaSeccion">
@@ -108,8 +109,7 @@
                   <select id="selecSeccion" class="form-select" name="seccionId">
                     <option th:each="seccion :${secciones}" 
                             th:value="${seccion.id}"
-                            th:text="${seccion.nombre}"></option>
-                    <!--??-->
+                            th:text="${seccion.titulo}"></option>
                   </select>
                 </div>
               </div>
@@ -125,16 +125,31 @@
           <div class="card card-body">
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Modificar Seccion</label>
             <hr>
-            <form action="modif_sec" method="POST">
+            <form action="/modif_seccion" method="POST">
               <div class="col-auto m-5 ml-5 mr-5" style="margin-top:70px !important">
                 <div class="mb-3 ">
                   <label for="selecSeccion" class="form-label">Seleccione una Seccion</label>
-                  <select id="selecSeccion" class="form-select" name="idSeccion">
-                    <option th:each="seccion :${secciones}" th:value="${seccion.id_Seccion}"
-                      th:text="${seccion.nombre}"></option>
+                  <select id="selecSeccion" class="form-select" name="seccionId">
+                    <option th:each="seccion :${secciones}" th:value="${seccion.id}"
+                      th:text="${seccion.titulo}"></option>
                   </select>
+                </div>
+                <div class="mb-3 ">
                   <label for="nombre" class="form-label">Nuevo Titulo:</label>
-                  <input type="text" class="form-control" id="nuevoNombre" name="nuevoNombre">
+                  <input type="text" class="form-control" id="nuevoNombre" name="titulo">
+                </div>
+                <div class="mb-3 ">
+                  <label for="number" class="form-label">Numero de Seccion</label>
+                  <input type="number" class="form-control" id="numero" name="numero">
+                </div>
+                <div class="mb-3">
+                  <label for="selecCurso" class="form-label">Seleccione Curso</label>
+                  <select id="selecCurso" class="form-select" name="cursoId">
+                    <option th:each="curso : ${cursos}" 
+                            th:value="${curso.id}" 
+                            th:text="${curso.titulo}"></option>
+
+                  </select>
                 </div>
                 <button type="submit" class="btn btn-success  btn-block">Modificar</button>
               </div>
@@ -151,7 +166,6 @@
   <footer>
     <div>©️ 2021 Copyright:
       <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-      <!--Estilado en CSS-->
     </div>
   </footer>
 
