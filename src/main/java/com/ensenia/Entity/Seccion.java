@@ -19,7 +19,7 @@ public class Seccion {
     private Integer numero;
     private String titulo;
     
-    @OneToMany //(mappedBy = "seccion", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) 
+    @OneToMany // (mappedBy = "seccion", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) 
     private List <Apartado> apartados;
 
     /////////////////////////////////////////////////////////////////////

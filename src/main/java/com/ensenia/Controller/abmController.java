@@ -140,7 +140,7 @@ public class abmController {
         try {
           
             Curso curso = cursoServicio.buscarCursoPorId(cursoId);
-            
+
              seccionServicio.alta(cursoId, titulo, numero);
         
             
