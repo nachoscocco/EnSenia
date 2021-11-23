@@ -159,12 +159,47 @@ input[type=password]:focus {
 /*-------------------------- FOOTER--------------------------------*/
 
 footer {
-    /*position: fixed; CHEQUEAR COMO FUNCA EN LOS OTROS HTML*/
+    padding-top: 15px;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
+
 }
 
+/*-------------------------- Estilos Contenidos --------------------------------*/
+.row{
+    margin: auto;
+    padding-top: 25px;
+    padding-left: 15px;
+}
+
+.prev-Next {
+    padding: 3px;
+    justify-content: space-between;
+}
+
+.contenido {
+    background-color: lightgrey;
+    height: 475px;
+
+}
+
+.accordion-button {
+    width: 100%;
+    border: none;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.video {
+    width: 100%;
+    height: 75%;
+    z-index: 2;
+}
 
 

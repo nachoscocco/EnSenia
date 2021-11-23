@@ -112,13 +112,20 @@
         <div class="col-auto">
           <div class="collapse multi-collapse" id="altaApartVid">
             <div class="card card-body">
-              <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Alta de Apartados Video</label>
+              <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Alta video</label>
               <hr>
-              <form action="alta_lib" method="POST">
+              <form action="/alta_video" method="POST">
                 <div class="col-auto m-4 ml-4 mr-4" style="margin-top:90px !important">
+                 <div class="mb-3 ">
+                  <label for="selecSeccion" class="form-label">Seleccione una Seccion</label>
+                  <select id="selecSeccion" class="form-select" name="seccionId">
+                    <option th:each="seccion1 :${secciones}" th:value="${seccion1.id}"
+                      th:text="${seccion1.titulo}"></option>
+                  </select>
+                </div> 
                   <div class="mb-3 ">
-                    <label for="num" class="form-label">Numero:</label>
-                    <input type="number" class="form-control" id="number" name="num">
+                    <label for="numero" class="form-label">Numero:</label>
+                    <input type="number" class="form-control" id="number" name="numero">
                   </div>
   
                   <div class="mb-3 ">
@@ -127,8 +134,8 @@
                   </div>
   
                   <div class="mb-3 ">
-                    <label for="num" class="form-label">Duracion</label>
-                    <input type="number" class="form-control" id="duration" name="time">
+                    <label for="duracion" class="form-label">Duracion</label>
+                    <input type="number" class="form-control" id="duration" name="duracion">
                   </div>
   
                   <div class="mb-3 ">

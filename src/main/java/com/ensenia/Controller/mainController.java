@@ -103,6 +103,7 @@ public class mainController {
         
           System.out.println("rol usuario"+login.getRol().getDescripcion() );
         System.out.println("login==="+session.getId());
+        publicarCursos(modelo);
       }catch(Exception e){
             
             modelo.put("error", e.getMessage());
@@ -127,11 +128,7 @@ public class mainController {
         return "redirect:/index.html";
     }
     
-    @GetMapping("/contenido")
-    public String contenido(HttpSession session) {
-       
-        return "contenido.html";
-    }
+
     
     
     
@@ -154,6 +151,12 @@ public class mainController {
       return b;
       }
     
+   }
+   
+   public void publicarCursos(ModelMap model){
+      List<Curso> cursos =cursoRepositorio.traerCursosAlta();
+      model.put("cursos",cursos);
+       
    }
     
     

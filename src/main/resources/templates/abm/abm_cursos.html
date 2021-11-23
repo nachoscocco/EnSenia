@@ -37,9 +37,9 @@
               Gestion
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="/abm/abm_cursos">Cursos</a></li>
-              <li><a class="dropdown-item" href="/abm/abm_secciones">Seccion</a></li>
-              <li><a class="dropdown-item" href="/abm/abm_apartados">Apartados</a></li>
+              <li><a class="dropdown-item" href="/abm_cursos">Cursos</a></li>
+              <li><a class="dropdown-item" href="/abm_secciones">Seccion</a></li>
+              <li><a class="dropdown-item" href="/abm_apartados">Apartados</a></li>
             </ul>
           </li>
         </ul>
@@ -97,8 +97,8 @@
                               <label for="selecgrupos" class="form-label">Grupo</label>
                               <select id="selecgrupos" class="form-select" name="grupoId">
                                  <option th:each="grupo :${grupos}"
-                                        th:value="${grupo.getId()}"
-                                        th:text="${grupo.getDescripcion()}"></option>    
+                                        th:value="${grupo.id}"
+                                        th:text="${grupo.descripcion}"></option>    
                               </select>
                 </div>
                 <button type="submit" class="btn btn-primary  btn-block">Guardar</button>
