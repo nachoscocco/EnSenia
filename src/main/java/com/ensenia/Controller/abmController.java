@@ -23,6 +23,7 @@ import com.ensenia.Service.SeccionServicio;
 import com.ensenia.Service.TextoServicio;
 import com.ensenia.Service.UsuarioServicio;
 import com.ensenia.Service.VideoServicio;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,6 +67,7 @@ public class abmController {
   ////////////////////////////////////*** CURSOS  ***///////////////////////  
     @GetMapping("/abm_cursos")
     public String abm_cursos(ModelMap model){
+        
         publicarInfoTemplate(model);
         
     return "abm/abm_cursos.html";
@@ -79,10 +81,7 @@ public class abmController {
                 
                 cursoServicio.alta(titulo, duracion, descripcion,grupo );
                 
-            }
-    
-           
-            
+            }      
         } catch (ErrorServicio e) {
             System.out.println("Error de servicio 'altaCurso' ="+e.getMessage());
             model.put("error",e.getMessage());
@@ -139,7 +138,7 @@ public class abmController {
     public String alta_seccion(ModelMap model,@RequestParam String cursoId,@RequestParam String titulo,@RequestParam Integer numero) throws Exception{
         try {
           
-            Curso curso = cursoServicio.buscarCursoPorId(cursoId);
+          
             
              seccionServicio.alta(cursoId, titulo, numero);
         
@@ -186,9 +185,50 @@ public class abmController {
     
     
     
+    @GetMapping("/abm_apartados")
+    public String abm_apartados(ModelMap model){
+        publicarInfoTemplate(model);
+        
+    return "abm/abm_apartados.html";
+    }
+    
+    @PostMapping("/alta_texto")
+    public String alta_texto(ModelMap model,@RequestParam String seccionId,@RequestParam String titulo,@RequestParam Integer numero,@RequestParam String contenido) throws Exception{
+        try {
+          
+            textoServicio.alta(contenido, titulo, numero, seccionId);
+            
+        
+            
+        } catch (ErrorServicio e) {
+            System.out.println("Error de servicio 'altaSeccion' ="+e.getMessage());
+            model.put("error",e.getMessage());
+        }
+        publicarInfoTemplate(model);
+        return "redirect:/abm_apartados";
+    }
     
     
-    
+     @PostMapping("/alta_video")
+    public String alta_video(ModelMap model,@RequestParam String seccionId,@RequestParam String titulo,@RequestParam Integer numero,@RequestParam String link) throws Exception{
+        try { 
+            Integer duracion =20;
+            System.out.println("link= "+link);
+            System.out.println("seccionId="+seccionId);
+            System.out.println("duracion="+duracion);
+            System.out.println("titulo="+titulo);
+            System.out.println("numero="+numero);
+            videoServicio.alta(link, duracion, seccionId, titulo, numero);
+            
+        
+            
+        } catch (ErrorServicio e) {
+            System.out.println("Error de servicio 'altaVideo' ="+e.getMessage());
+            model.put("error",e.getMessage());
+        }
+        publicarInfoTemplate(model);
+        return "redirect:/abm_apartados";
+    }
     
     
     
@@ -208,7 +248,7 @@ public class abmController {
         model.put("grupos",grupos);
         List<Curso> cursos = cursoRepositorio.traerCursosAlta();
         model.put("cursos",cursos);
-        List<Seccion> secciones = seccionRepositorio.findAll();
+        List<Seccion> secciones = seccionRepositorio.traerSeccionesAlta();
         model.put("secciones",secciones);
         List<Texto> textos = textoRepositorio.findAll();
         model.put("textos",textos);

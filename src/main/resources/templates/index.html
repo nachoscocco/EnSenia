@@ -22,27 +22,17 @@
 <body>
 
   <!-------------------------------------------BARRA NAVEGACION---------------------------------------------->
- <!-- <div class="header">
-    <img src="image/Logo.png" class="logo" alt="logo En-seña">
- 
-    <div class="header-right">
-      <button class="ingresar" onclick="botonIngreso()">Ingresar</button>
-      <button onclick="botonRegistro()">Registrarse</button>
-    </div>
-  </div> -->
-
- 
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="image/Logo.png" alt="" class="logo"></a>
+      <a class="navbar-brand" href="/index"><img src="image/Logo.png" alt="" class="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+        <ul class="nav">
+          <li class="dropdown" th:if="${isAdmin}">
+            <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Gestion
             </a>
@@ -50,24 +40,24 @@
               <li><a class="dropdown-item" href="/abm_cursos">Cursos</a></li>
               <li><a class="dropdown-item" href="/abm_seccion">Seccion</a></li>
               <li><a class="dropdown-item" href="/abm_apartados">Apartados</a></li>
-            
+
             </ul>
           </li>
         </ul>
-        <div class="col-4 d-flex">
+        <div class="col-4 " >
           <ul class="nav">
             <li><a href="#">Inicio</a></li>
-            <li><a href="#">Cursos</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            <li><a href="#cursos">Cursos</a></li>
+            <li class="user dropdown">
+              <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
                 Mi Cuenta
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#">Configuracion</a></li>
-                <li><a class="dropdown-item" href="#">Mis Cursos</a></li>
+                <li><a class="dropdown-item" href="contenido.html">Mis Cursos</a></li>
                 <li><a class="dropdown-item" href="#"></a>Ya veremos que</li>
-                <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+                <li><a class="dropdown-item" href="/">Cerrar Sesion</a></li>
               </ul>
             </li>
           </ul>
@@ -75,52 +65,57 @@
       </div>
     </div>
   </nav>
- 
+
 
   <!------------------------------------------ SECCION CARRUSEL -------------------------------------------->
-
-  <div class="w3-content w3-section">
-    <img class="mySlides" src="image/3715.jpg">
-    <img class="mySlides" src="image/20945083.jpg">
-    <img class="mySlides" src="image/3715.jpg">
+  <main>
+    <div class="banner">
+    <img class="mySlides" src="image/quienes somos.png">
+    <img class="mySlides" src="image/diversidad.png">
+    <img class="mySlides" src="image/frase.png">
+    <img class="mySlides" src="image/igualdad.png">
+    <img class="mySlides" src="image/proximos.png">
   </div>
 
   <!------------------------------------------ SECCION CURSOS --------------------------------------------->
-
-  <div class="courses">
-    <div class="coursesCard">
-      <img src="image/fondo blanco.jpeg" alt="">
-      <button class="suge-btn-vermas">Ir al Curso</button>
-
+ <!-- <div class="containerCursos">
+    <h4>Nuestras Capacitaciones</h4>
+    <div class="courses" id="cursos">
+      <div class="coursesCard" th:each="curso : ${cursos}">
+        <p th:text="${curso.titulo}"></p>
+        <a class="goTo-btn" th:href="@{/contenido(id=${curso.id})}">">Ir al Curso</a>
+      </div>
+      
     </div>
+  </div> -->
+<div class="containerCursos mt-4">
+<h4>Nuestras Capacitaciones</h4>
+ <div  class="card-columns courses" id="cursos">
 
-    <div class="coursesCard">
-      <img src="image/fondo blanco.jpeg" alt="">
-      <button class="goTo-btn">Ir al Curso</button>
-    </div>
+    <div  th:each="curso : ${cursos}" class="card animated fadeIn fast " >
+       <img src="image/fondo blanco.jpeg" class="card-img-top" >
+       <div class="card-body">
+           <h5 th:text="${curso.titulo}" class="card-title"></h5>
+           <br>
+           <a th:href="@{/contenido(id=${curso.id})}" type="goTo-btn" class="btn btn-outline-primary  btn-block">
+               Ver mas...
+           </a>
 
-    <div class="coursesCard">
-      <img src="image/fondo blanco.jpeg" alt="">
-      <button class="goTo-btn">Ir al Curso</button>
-    </div>
-
-    <div class="coursesCard">
-      <img src="image/fondo blanco.jpeg" alt="">
-      <button class="goTo-btn">Ir al Curso</button>
-    </div>
-
-  </div>
-
-
+           <!--   <a [routerLink]="['/heroe', i]" routerLinkActive="router-link-active" class="btn btn-outline-primary  btn-block">Ver mas link..</a> -->
+       </div>
+   </div>
+</div>
+</div>
+</main>
   <!------------------------------------------- FOOTER----------------------------------------------->
 
   <footer>
     <div>©️ 2021 Copyright:
-      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+      <a href="https://mdbootstrap.com/"> sarasa</a>
     </div>
   </footer>
 
-  <script src="templates/main.js"> </script>
+  <script src="js/main.js"> </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
   </script>

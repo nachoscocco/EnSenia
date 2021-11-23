@@ -1,35 +1,70 @@
 .col-4 li {
-    background-color: #ddd;
-    color: black;
-    text-align: center;
-    padding: 12px;
-    margin-left: 2px;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
-}
+  text-align: center;
+  padding: 12px;
+  margin-left: 2px;
+  font-size: 18px;
 
+}
 
 .col-4 {
-    margin-left:60%;
-    align-items: center;
-    
+  margin-left: 60%;
+  align-items: center;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.user {
+  border-radius: 50%;
+  background-color: #ddd;
+  border-radius: 4px;
+  line-height: 25px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: grey;
+}
+
+
 /*------------------------------- Carrusel------------------------------------*/
 
-.mySlides {
-    max-width: 100%;
-    height: auto;
+.banner {
+  padding: 15px;
+
 }
 
-/*------------------------------- Tarjetas Cursos------------------------------------*/
+.banner img {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  position: relative;
+  width: 100%;
+  height: 35em;
+
+}
+
+/*------------------------------- Carrusel------------------------------------*/
+
+.containerCursos {
+  margin: 25px;
+  border-radius: 4px;
+  border-style: outset;
 
 
+}
+
+h4{
+  font-size: 3rem;
+  line-height: 1.3;
+  text-align: center;
+
+}
 .courses {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 9px;
+    padding: 0.5em;
 
 }
 
@@ -44,15 +79,42 @@
     height: 280px;
     overflow: hidden;
 }
-  
+
 .goTo-btn {
-    cursor: pointer;
-    position: absolute;
-    bottom: 19px;
-    left: 11px;
-    color: black;
-    width: fit-content;
-    padding: 8px 10px;
-    background: grey;
+  cursor: pointer;
+  position: absolute;
+  bottom: 19px;
+  left: 11px;
+  color: black;
+  width: fit-content;
+  padding: 8px 10px;
+  background: grey;
+
 }
 
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}

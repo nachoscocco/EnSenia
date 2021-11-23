@@ -145,6 +145,15 @@ public class CursoServicio {
         }
     }
     
+    public List<Seccion> traerSeccionesXCurso(String id)throws ErrorServicio{
+    List<Seccion> secciones =cursoRepositorio.traerSeccionesXCurso(id);
+    if(secciones !=null){
+    return secciones;
+    }else{
+        throw new  ErrorServicio("El curso no tiene secciones"); 
+    }
+    }
+    
     
 
             

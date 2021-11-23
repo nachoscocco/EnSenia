@@ -1,0 +1,6 @@
+INSERT INTO ensenia.rol (id, descripcion) 
+	VALUES ('1', 'USUARIO_REG')
+INSERT INTO ensenia.rol (id, descripcion) 
+	VALUES ('2', 'ADMIN')
+INSERT INTO ensenia.rol (id, descripcion) 
+	VALUES ('3', 'SYS_ADMIN')

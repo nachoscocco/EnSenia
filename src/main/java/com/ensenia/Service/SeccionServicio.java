@@ -28,10 +28,11 @@ public class SeccionServicio {
 
         seccion.setTitulo(titulo);
         seccion.setNumero(numero);
-
+        seccion.setAlta(true);
+        seccionRepositorio.save(seccion);
         cursoServicio.agregarSeccion(id_curso, seccion);
 
-        seccionRepositorio.save(seccion);
+       
     }
 
     @Transactional
@@ -45,10 +46,10 @@ public class SeccionServicio {
             Seccion seccion = respuesta.get();
             seccion.setTitulo(titulo);
             seccion.setNumero(numero);
-
+            seccionRepositorio.save(seccion);   
             cursoServicio.agregarSeccion(id_curso, seccion);
 
-            seccionRepositorio.save(seccion);
+            
 
         } else {
             throw new ErrorServicio("Error: no se encontro la seccion solicitada.!");
@@ -63,7 +64,7 @@ public class SeccionServicio {
         if (respuesta.isPresent()) {
 
             Seccion seccion = respuesta.get();
-
+            seccion.setAlta(false);
             seccionRepositorio.save(seccion);
 
         } else {
@@ -90,6 +91,9 @@ public class SeccionServicio {
             Seccion seccion = respuesta.get();
             try {
                 seccion.getApartados().add(apartado);
+                System.out.println("SECCION QUE TRAE???"+seccion.getTitulo());
+                System.out.println("apartado a agregar perroo idd =="+apartado.getId());
+                System.out.println("apartado calseee  =="+apartado.getClass().getCanonicalName());
 
                 seccionRepositorio.save(seccion);
             } catch (Exception e) {

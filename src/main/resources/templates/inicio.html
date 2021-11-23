@@ -24,9 +24,10 @@
 th:href="@{/loguearse(id=__${session.usuariosession.id}__)}" 
 th:href="@{/mascota/mis-mascotas}"
 -->
+
   <div class="header" >
     <img src="image/Logo.png" class="logo" alt="logo En-seña">
-    <!--agregue alt-->
+
     <div class="header-right">
       <button class="ingresar" onclick="botonIngreso()">Ingresar</button>
       <button onclick="botonRegistro()">Registrarse</button>
@@ -38,7 +39,7 @@ th:href="@{/mascota/mis-mascotas}"
   <div class="container">
     <!--Formulario Ingreso/Registro-->
     <div id="myDiv" style="display: none;">
-      <!--Sacar style / ver funcion en js-->
+
       <form action="/loguearse" method="POST" class="container-form" enctype="multipart/form-data">
         <label for="mail"><b>Email</b></label>
         <input type="text" placeholder="Enter Email" name="mail" required>
@@ -54,13 +55,10 @@ th:href="@{/mascota/mis-mascotas}"
     </div>
 
     <div id="myDiv2" style="display: none;">
-      <!--Sacar style / ver funcion en js-->
       <form action="/registrar" method="POST" class="container-form" enctype="multipart/form-data">
-          
             <p th:if="${error != null}" th:text="${error}" style="color:red"></p>
             <p th:if="${registro != null}" th:text="${registro}" style="color:green"></p> 
-        
-            <label for="name"><b>Nombre</b></label>
+         <label for="name"><b>Nombre</b></label>
         <input type="text" placeholder="Nombre" name="nombre" required th:value="${nombre}">
 
         <label for="lastname"><b>Apellido</b></label>
@@ -79,7 +77,7 @@ th:href="@{/mascota/mis-mascotas}"
       </form>
     </div>
 
-    <img src="image/3715.jpg" class="bg-img" alt="banner"><!--Cambio nuevo. Saque style/agregue clase-->
+    <img src="image/3715.jpg" class="bg-img" alt="banner">
     <div class="content">
       <h1>APRENDIENDO A INCLUIR</h1>
       <p>Lorem ipsum dolor sit amet, an his etiam torquatos. Tollit soleat phaedrum te duo, eum cu recteque expetendis
@@ -92,7 +90,7 @@ th:href="@{/mascota/mis-mascotas}"
 
   <footer>
     <div>©️ 2021 Copyright:
-      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a> <!--Estilado en CSS-->
+      <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
     </div>
   </footer>
 

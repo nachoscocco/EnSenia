@@ -12,23 +12,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kodchasan:wght@400;500&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="../abm/css/styles.css">
+  <link rel="stylesheet" href="static/styles/stylesabm.css">
+  
   <title>Gestionar Apartados</title>
 </head>
 
 <body>
-
   <!------------------------------------------- NAV ----------------------------------------------->
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid">
-      <a class="navbar-brand" href="../index.html"><img src="../abm/image/Logo.png" alt="" class="logo"></a>
+      <a class="navbar-brand" href="templates/index.html"><img src="static/image/Logo.png" alt="logo" class="logo"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a href="../abm/lista.html">Listar</a></li>
+          <li class="nav-item"><a href="/lista.html">Listar</a></li>
           <li class="nav-item"><a href="#">Disabled</a></li>
           <li class="nav-item dropdown">
             <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -36,10 +36,10 @@
               Gestion
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="../abm/abm_cursos.html">Cursos</a></li>
-              <li><a class="dropdown-item" href="../abm/abm_seccion.html">Seccion</a></li>
-              <li><a class="dropdown-item" href="../abm/abm_apartados.html">Apartados</a></li>
-              <li><a class="dropdown-item" href="../abm/abm_grupo.html">Grupos</a></li>
+              <li><a class="dropdown-item" href="/abm/abm_cursos.html">Cursos</a></li>
+              <li><a class="dropdown-item" href="/abm/abm_seccion.html">Seccion</a></li>
+              <li><a class="dropdown-item" href="/abm/abm_apartados.html">Apartados</a></li>
+              <li><a class="dropdown-item" href="/abm/abm_grupo.html">Grupos</a></li>
             </ul>
           </li>
         </ul>
@@ -51,26 +51,44 @@
   <main>
     <div class="m-0 row justify-content-center">
       <div class="col-auto mt-2">
-        <a class="btn btn-primary" data-bs-toggle="collapse" href="#altaApartados" role="button" aria-expanded="false"
-          aria-controls="altaApartados">Alta</a>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#altaApartText" role="button" aria-expanded="false"
+          aria-controls="altaApartados">Alta TEXTO</a>
         <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#bajaApartText"
-          aria-expanded="false" aria-controls="bajaApartText">Baja</button>
+          aria-expanded="false" aria-controls="bajaApartText">Baja TEXTO</button>
         <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#modifApartText"
-          aria-expanded="false" aria-controls="modifApartText">Modificar</button>
+          aria-expanded="false" aria-controls="modifApartText">Modificar TEXTO</button>
+        <p style="color:red" th:if="${error!=null}" th:text="${error}"></p>
+      </div>
+    </div>
+      <div class="m-0 row justify-content-center">
+      <div class="col-auto mt-2">
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#altaApartVid" role="button" aria-expanded="false"
+          aria-controls="altaApartadosVid">Alta VIDEO</a>
+        <button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#bajaApartVid"
+          aria-expanded="false" aria-controls="bajaApartText">Baja VIDEO</button>
+        <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#modifApartVid"
+          aria-expanded="false" aria-controls="modifApartText">Modificar VIDEO</button>
         <p style="color:red" th:if="${error!=null}" th:text="${error}"></p>
       </div>
     </div>
     <div class="m-5 row justify-content-center">
       <div class="col-auto">
-        <div class="collapse multi-collapse" id="altaApartados">
+        <div class="collapse multi-collapse" id="altaApartText">
           <div class="card card-body">
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Alta de Apartados Texto</label>
             <hr>
-            <form action="alta_lib" method="POST">
+            <form action="/alta_texto" method="POST">
               <div class="col-auto m-4 ml-4 mr-4" style="margin-top:90px !important">
                 <div class="mb-3 ">
+                  <label for="selecSeccion" class="form-label">Seleccione una Seccion</label>
+                  <select id="selecSeccion" class="form-select" name="seccionId">
+                    <option th:each="seccion :${secciones}" th:value="${seccion.id}"
+                      th:text="${seccion.titulo}"></option>
+                  </select>
+                </div>  
+                <div class="mb-3 ">
                   <label for="num" class="form-label">Numero:</label>
-                  <input type="number" class="form-control" id="number" name="num">
+                  <input type="number" class="form-control" id="number" name="numero">
                 </div>
 
                 <div class="mb-3 ">
@@ -80,9 +98,9 @@
 
                 <div class="mb-3 ">
                   <label for="contenido" class="form-label">Contenido</label>
-                  <input type="text" class="form-control" id="contenido" name="contenido">
+                  <textarea type="clob" class="form-control" placeholder="Ingrese contenido" name="contenido" id="contenido" style="height: 100px"></textarea>
                 </div>
-
+                  
               </div>
               <button type="submit" class="btn btn-primary btn-block">Guardar</button>
             </form>
@@ -92,15 +110,22 @@
 
       <div class="m-5 row justify-content-center">
         <div class="col-auto">
-          <div class="collapse multi-collapse" id="altaApartados">
+          <div class="collapse multi-collapse" id="altaApartVid">
             <div class="card card-body">
-              <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Alta de Apartados Video</label>
+              <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Alta video</label>
               <hr>
-              <form action="alta_lib" method="POST">
+              <form action="/alta_video" method="POST">
                 <div class="col-auto m-4 ml-4 mr-4" style="margin-top:90px !important">
+                 <div class="mb-3 ">
+                  <label for="selecSeccion" class="form-label">Seleccione una Seccion</label>
+                  <select id="selecSeccion" class="form-select" name="seccionId">
+                    <option th:each="seccion1 :${secciones}" th:value="${seccion1.id}"
+                      th:text="${seccion1.titulo}"></option>
+                  </select>
+                </div> 
                   <div class="mb-3 ">
-                    <label for="num" class="form-label">Numero:</label>
-                    <input type="number" class="form-control" id="number" name="num">
+                    <label for="numero" class="form-label">Numero:</label>
+                    <input type="number" class="form-control" id="number" name="numero">
                   </div>
   
                   <div class="mb-3 ">
@@ -109,8 +134,8 @@
                   </div>
   
                   <div class="mb-3 ">
-                    <label for="num" class="form-label">Duracion</label>
-                    <input type="number" class="form-control" id="duration" name="time">
+                    <label for="duracion" class="form-label">Duracion</label>
+                    <input type="number" class="form-control" id="duration" name="duracion">
                   </div>
   
                   <div class="mb-3 ">
@@ -154,7 +179,7 @@
       </div>
 
       <div class="col-auto">
-        <div class="collapse multi-collapse" id="bajaApartText">
+        <div class="collapse multi-collapse" id="bajaApartVid">
           <div class="card card-body">
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Eliminar Apartado Video</label>
             <hr>
@@ -216,7 +241,7 @@
       </div>
 
       <div class="col-auto">
-        <div class="collapse multi-collapse" id="modifApartText">
+        <div class="collapse multi-collapse" id="modifApartVid">
           <div class="card card-body">
             <label class=" m-2" for="nombre" style="font-weight: bold;font-size: 25px;">Modificar Apartado Video</label>
             <hr>
@@ -247,17 +272,6 @@
           </form>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
-
     </div>
 
     </div>
@@ -269,7 +283,6 @@
   <footer>
     <div>©️ 2021 Copyright:
       <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-      <!--Estilado en CSS-->
     </div>
   </footer>
 

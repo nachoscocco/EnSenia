@@ -19,18 +19,20 @@ public class VideoServicio {
     private SeccionServicio seccionServicio;
             
     @Transactional
-    public void alta(String link, Integer duracion, String id_seccion) throws ErrorServicio {
+    public void alta(String link, Integer duracion, String id_seccion,String titulo, Integer numero) throws ErrorServicio {
 
-            validar(link, duracion);
+            validar(link, duracion,titulo,numero);
             
             Video video = new Video();
             
             video.setLink(link);
             video.setDuracion(duracion);
-            
+            video.setTitulo(titulo);
+            video.setNumero(numero);
+            videoRepositorio.save(video);
             seccionServicio.agregarApartado(id_seccion, video);
             
-            videoRepositorio.save(video);
+           
             
     }
 
@@ -52,7 +54,7 @@ public class VideoServicio {
     @Transactional
     public void modificar(String id, String link, Integer duracion, String id_seccion) throws ErrorServicio {
         
-        validar(link, duracion);
+        //validar(link, duracion);
         Optional<Video> respuesta = videoRepositorio.findById(id);
         if (respuesta.isPresent()) {
             
@@ -69,11 +71,16 @@ public class VideoServicio {
     }
 
     @Transactional
-    public void validar(String link, Integer duracion) throws ErrorServicio {
+    public void validar(String link, Integer duracion,String titulo, Integer numero) throws ErrorServicio {
         if (link == null || link.isEmpty()) {
+            throw new ErrorServicio("El link no puede ser nulo.");
+        }
+        if (titulo == null || titulo.isEmpty()) {
             throw new ErrorServicio("El titulo no puede ser nulo.");
         }
-        if (duracion == null || duracion >= 1) {
+       
+        
+        if (duracion == null || duracion < 1) {
             throw new ErrorServicio("La duracion tiene que ser mayor a '0'. ");
         }
     }
